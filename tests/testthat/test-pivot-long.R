@@ -65,9 +65,8 @@ test_that("mixed columns are automatically coerced", {
 })
 
 test_that("can override default output column type", {
-  df <- tibble(x = "x", y = 1)
-  pv <- pivot_longer(df, x:y, values_ptypes = list(value = list()))
-
+  df <- tibble(x = "x", y = 1L)
+  pv <- pivot_longer(df, x:y, values_transform = list(value = as.list))
   expect_equal(pv$value, list("x", 1))
 })
 
@@ -157,15 +156,30 @@ test_that("grouping is preserved", {
 
 # spec --------------------------------------------------------------------
 
+test_that("validates inputs", {
+  df <- tibble(x = 1)
+  expect_error(build_longer_spec(df, x, values_to = letters[1:2]),
+    class = "vctrs_error_assert"
+  )
+})
+
+test_that("no names doesn't generate names", {
+  df <- tibble(x = 1)
+  expect_equal(
+    colnames(build_longer_spec(df, x, names_to = character())),
+    c(".name", ".value")
+  )
+})
+
 test_that("multiple names requires names_sep/names_pattern", {
   df <- tibble(x_y = 1)
   expect_error(
-    build_longer_spec(df, 1, names_to = c("a", "b")),
+    build_longer_spec(df, x_y, names_to = c("a", "b")),
     "multiple names"
   )
 
   expect_error(
-    build_longer_spec(df, 1,
+    build_longer_spec(df, x_y,
       names_to = c("a", "b"),
       names_sep = "x",
       names_pattern = "x"
@@ -176,7 +190,7 @@ test_that("multiple names requires names_sep/names_pattern", {
 
 test_that("names_sep generates correct spec", {
   df <- tibble(x_y = 1)
-  sp <- build_longer_spec(df, 1, names_to = c("a", "b"), names_sep = "_")
+  sp <- build_longer_spec(df, x_y, names_to = c("a", "b"), names_sep = "_")
 
   expect_equal(sp$a, "x")
   expect_equal(sp$b, "y")
@@ -184,38 +198,38 @@ test_that("names_sep generates correct spec", {
 
 test_that("names_sep fails with single name", {
   df <- tibble(x_y = 1)
-  expect_error(build_longer_spec(df, 1, names_to = "x", names_sep = "_"), "`names_sep`")
+  expect_error(build_longer_spec(df, x_y, names_to = "x", names_sep = "_"), "`names_sep`")
 })
 
 test_that("names_pattern generates correct spec", {
   df <- tibble(zx_y = 1)
-  sp <- build_longer_spec(df, 1, names_to = c("a", "b"), names_pattern = "z(.)_(.)")
+  sp <- build_longer_spec(df, zx_y, names_to = c("a", "b"), names_pattern = "z(.)_(.)")
   expect_equal(sp$a, "x")
   expect_equal(sp$b, "y")
 
-  sp <- build_longer_spec(df, 1, names_to = "a", names_pattern = "z(.)")
+  sp <- build_longer_spec(df, zx_y, names_to = "a", names_pattern = "z(.)")
   expect_equal(sp$a, "x")
 })
 
 test_that("names_to can override value_to", {
   df <- tibble(x_y = 1)
-  sp <- build_longer_spec(df, 1, names_to = c("a", ".value"), names_sep = "_")
+  sp <- build_longer_spec(df, x_y, names_to = c("a", ".value"), names_sep = "_")
 
   expect_equal(sp$.value, "y")
 })
 
 test_that("names_prefix strips off from beginning", {
   df <- tibble(zzyz = 1)
-  sp <- build_longer_spec(df, 1, names_prefix = "z")
+  sp <- build_longer_spec(df, zzyz, names_prefix = "z")
 
   expect_equal(sp$name, "zyz")
 })
 
 test_that("can cast to custom type", {
   df <- tibble(w1 = 1)
-  sp <- build_longer_spec(df, 1,
+  sp <- build_longer_spec(df, w1,
     names_prefix = "w",
-    names_ptypes = list(name = integer())
+    names_transform = list(name = as.integer)
   )
 
   expect_equal(sp$name, 1L)

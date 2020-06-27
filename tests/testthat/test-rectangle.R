@@ -4,19 +4,42 @@ context("test-hoist")
 
 test_that("hoist extracts named elements", {
   df <- tibble(x = list(list(1, b = "b")))
-  out <- df %>% hoist(x, a = 1, b = "b")
 
+  out <- df %>% hoist(x, a = 1, b = "b")
   expect_equal(out, tibble(a = 1, b = "b"))
+
+  out <- df %>% hoist(x, a = 1, b = "b", .simplify = FALSE)
+  expect_identical(out, tibble(a = list(1), b = list("b")))
 })
 
-test_that("can require specific type with ptype", {
+test_that("can check check/transform values", {
   df <- tibble(x = list(
     list(a = 1),
     list(a = "a")
   ))
 
-  out <- df %>% hoist(x, a = "a", .ptype = list(a = character()))
+  if (packageVersion("vctrs") > "0.2.4") {
+    expect_error(
+      df %>% hoist(x, a = "a", .ptype = list(a = character())),
+      class = "vctrs_error_incompatible_type"
+    )
+  }
+
+  out <- df %>% hoist(x, a = "a", .transform = list(a = as.character))
   expect_equal(out, tibble(a = c("1", "a")))
+})
+
+test_that("supplying ptype increases stringency of simplify", {
+  df <- tibble(x = list(
+    list(a = 1:2, b = list(list()), c = quote(a)),
+    list(a = 1, b = list(list()), c = quote(b)),
+    list(a = 1, b = list(list()), c = NULL)
+  ))
+
+  ptype <- list(a = integer(), b = integer(), c = integer())
+  expect_error(df %>% hoist(x, "a", .ptype = ptype), "length > 1")
+  expect_error(df %>% hoist(x, "b", .ptype = ptype), "nested list")
+  expect_error(df %>% hoist(x, "c", .ptype = ptype), "non-vector")
 })
 
 test_that("doesn't simplify uneven lengths", {
@@ -39,12 +62,39 @@ test_that("doesn't simplify lists of lists", {
   expect_equal(out$a, list(list(1), list(2)))
 })
 
+test_that("doesn't simplify non-vectors", {
+  df <- tibble(x = list(
+    list(a = quote(a)),
+    list(a = quote(b))
+  ))
+
+  out <- df %>% hoist(x, a = "a")
+  expect_equal(out$a, list(quote(a), quote(b)))
+})
+
+test_that("can hoist out scalars", {
+  df <- tibble(
+    x = 1:2,
+    y = list(
+      list(mod = lm(mpg ~ wt, data = mtcars)),
+      list(mod = lm(mpg ~ wt, data = mtcars))
+    )
+  )
+  out <- hoist(df, y, "mod")
+  expect_equal(out$mod, list(df$y[[1]]$mod, df$y[[2]]$mod))
+})
 
 test_that("input validation catches problems", {
   df <- tibble(x = list(list(1, b = "b")), y = 1)
 
   expect_error(df %>% hoist(y), "list-column")
-  expect_error(df %>% hoist(x, "a"), "named")
+  expect_error(df %>% hoist(x, 1), "named")
+  expect_error(df %>% hoist(x, a = "a", a = "b"), "unique")
+})
+
+test_that("string pluckers are automatically named", {
+  out <- check_pluckers("x", y = "x", z = 1)
+  expect_named(out, c("x", "y", "z"))
 })
 
 # strike ------------------------------------------------------------------
@@ -127,7 +177,7 @@ test_that("simplifies length-1 lists", {
 
   # Works when casting too
   out <- df %>% unnest_wider(y,
-    ptype = list(a = double(), b = double(), c = list())
+    ptype = list(a = double(), b = double())
   )
   expect_equal(out$a, c(1, 3))
   expect_equal(out$b, c(2, NA))
@@ -260,4 +310,14 @@ test_that("mix of named and unnamed becomes longer", {
   df <- tibble(x = 1:2, y = list(c(a = 1), 2))
   expect_message(out <- df %>% unnest_auto(y), "unnest_longer")
   expect_named(out, c("x", "y"))
+})
+
+# https://github.com/tidyverse/tidyr/issues/959
+test_that("works with an input that has column named `col`", {
+  df <- tibble(
+    col = 1L,
+    list_col = list(list(x = "a", y = "b"), list(x = "c", y = "d"))
+  )
+  expect_message(out <- df %>% unnest_auto(list_col), "unnest_wider")
+  expect_named(out, c("col", "x", "y"))
 })
