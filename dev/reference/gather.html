@@ -17,27 +17,35 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 <!-- Bootstrap -->
 <link href="../tidyverse.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script>
 <link href="../tidyverse-2.css" rel="stylesheet">
+
+<!--optional theme-->
+<link href="../.css" rel="stylesheet">
+
 
 
 
@@ -76,7 +84,7 @@ See more details in vignette(&quot;pivot&quot;)." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -91,9 +99,9 @@ See more details in vignette(&quot;pivot&quot;)." />
 
       <div class="navbar-brand-container">
         <a class="navbar-brand" href="../index.html">tidyr</a>
-        <div class="info">
+        <div class="info hidden-xs hidden-sm">
           <span class="partof">part of the <a href="https://tidyverse.org">tidyverse</a></span>
-          <span class="version version-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.0.0.9000</span>
+          <span class="version version-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.0.9000</span>
         </div>
       </div>
     </div>
@@ -113,19 +121,17 @@ See more details in vignette(&quot;pivot&quot;)." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/in-packages.html">In packages</a>
-    </li>
-    <li>
-      <a href="../articles/nest.html">Nested data</a>
-    </li>
-    <li>
       <a href="../articles/pivot.html">Pivoting</a>
     </li>
     <li>
       <a href="../articles/rectangle.html">Rectangling</a>
     </li>
     <li>
-      <a href="../articles/tidy-data.html">Tidy data</a>
+      <a href="../articles/nest.html">Nested data</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -136,7 +142,10 @@ See more details in vignette(&quot;pivot&quot;)." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Release notes</li>
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://www.tidyverse.org/blog/2020/05/tidyr-1.1.0/">Version 1.1.0</a>
+    </li>
     <li>
       <a href="https://www.tidyverse.org/articles/2019/09/tidyr-1-0-0/">Version 1.0.0</a>
     </li>
@@ -166,12 +175,12 @@ See more details in vignette(&quot;pivot&quot;)." />
     </li>
     <li class="divider"></li>
     <li>
-      <a href="../news/index.html">Change log</a>
+      <a href="../news/index.html">Changelog</a>
     </li>
   </ul>
 </li>
         <li>
-  <a href="https://github.com/tidyverse/tidyr">
+  <a href="https://github.com/tidyverse/tidyr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -196,22 +205,22 @@ See more details in vignette(&quot;pivot&quot;)." />
 
     <div class="ref-description">
     <p><a href='https://www.tidyverse.org/lifecycle/#retired'><img src='figures/lifecycle-retired.svg' alt='Retired lifecycle'></a></p>
-<p>Development on <code>gather()</code> is complete, and for new code we recommend
-switching to <code><a href='pivot_longer.html'>pivot_longer()</a></code>, which is easier to use, more featureful, and
+<p>Development on <code><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather()</a></code> is complete, and for new code we recommend
+switching to <code><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer()</a></code>, which is easier to use, more featureful, and
 still under active development.
 <code>df %&gt;% gather("key", "value", x, y, z)</code> is equivalent to
 <code>df %&gt;% pivot_longer(c(x, y, z), names_to = "key", values_to = "value")</code></p>
-<p>See more details in <code><a href='../articles/pivot.html'>vignette("pivot")</a></code>.</p>
+<p>See more details in <code>vignette("pivot")</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gather</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"key"</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>convert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>factor_key</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+    <pre class="usage"><span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(
+  <span class='kw'>data</span>,
+  key = <span class='st'>"key"</span>,
+  value = <span class='st'>"value"</span>,
+  <span class='kw'>...</span>,
+  na.rm = <span class='fl'>FALSE</span>,
+  convert = <span class='fl'>FALSE</span>,
+  factor_key = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -264,10 +273,9 @@ which preserves the original ordering of the columns.</p></td>
     
 
 
-<p>Arguments for selecting columns are passed to
-<code><a href='https://rdrr.io/pkg/tidyselect/man/vars_select.html'>tidyselect::vars_select()</a></code> and are treated specially. Unlike other
-verbs, selecting functions make a strict distinction between data
-expressions and context expressions.</p><ul>
+<p>Arguments for selecting columns are passed to <code><a href='https://tidyselect.r-lib.org/reference/vars_select.html'>tidyselect::vars_select()</a></code>
+and are treated specially. Unlike other verbs, selecting functions make a
+strict distinction between data expressions and context expressions.</p><ul>
 <li><p>A data expression is either a bare name like <code>x</code> or an expression
 like <code>x:y</code> or <code><a href='https://rdrr.io/r/base/c.html'>c(x, y)</a></code>. In a data expression, you can only refer
 to columns from the data frame.</p></li>
@@ -278,56 +286,54 @@ refer to objects that you have defined with <code>&lt;-</code>.</p></li>
 <p>For instance, <code>col1:col3</code> is a data expression that refers to data
 columns, while <code><a href='https://rdrr.io/r/base/seq.html'>seq(start, end)</a></code> is a context expression that
 refers to objects from the contexts.</p>
-<p>If you really need to refer to contextual objects from a data
-expression, you can unquote them with the tidy eval operator
-<code>!!</code>. This operator evaluates its argument in the context and
-inlines the result in the surrounding function call. For instance,
-<code><a href='https://rdrr.io/r/base/c.html'>c(x, !! x)</a></code> selects the <code>x</code> column within the data frame and the
-column referred to by the object <code>x</code> defined in the context (which
-can contain either a column name as string or a column position).</p>
+<p>If you need to refer to contextual objects from a data expression, you can
+use <code><a href='https://tidyselect.r-lib.org/reference/all_of.html'>all_of()</a></code> or <code><a href='https://tidyselect.r-lib.org/reference/all_of.html'>any_of()</a></code>. These functions are used to select
+data-variables whose names are stored in a env-variable. For instance,
+<code><a href='https://tidyselect.r-lib.org/reference/all_of.html'>all_of(a)</a></code> selects the variables listed in the character vector <code>a</code>.
+For more details, see the <code><a href='https://tidyselect.r-lib.org/reference/language.html'>tidyselect::select_helpers()</a></code> documentation.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
 <span class='co'># From https://stackoverflow.com/questions/1181060</span>
-<span class='no'>stocks</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(
-  <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>'2009-01-01'</span>) + <span class='fl'>0</span>:<span class='fl'>9</span>,
-  <span class='kw'>X</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
-  <span class='kw'>Y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>2</span>),
-  <span class='kw'>Z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>4</span>)
+<span class='kw'>stocks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(
+  time = <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>'2009-01-01'</span>) <span class='op'>+</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>9</span>,
+  X = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>1</span>),
+  Y = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>2</span>),
+  Z = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>4</span>)
 )
 
-<span class='fu'>gather</span>(<span class='no'>stocks</span>, <span class='st'>"stock"</span>, <span class='st'>"price"</span>, -<span class='no'>time</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 3
-#&gt;    time       stock   price
-#&gt;    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-#&gt;  1 2009-01-01 X     -1.63  
-#&gt;  2 2009-01-02 X      0.512 
-#&gt;  3 2009-01-03 X     -1.86  
-#&gt;  4 2009-01-04 X     -0.522 
-#&gt;  5 2009-01-05 X     -0.0526
-#&gt;  6 2009-01-06 X      0.543 
-#&gt;  7 2009-01-07 X     -0.914 
-#&gt;  8 2009-01-08 X      0.468 
-#&gt;  9 2009-01-09 X      0.363 
-#&gt; 10 2009-01-10 X     -1.30  
-#&gt; # … with 20 more rows</div><div class='input'><span class='no'>stocks</span> <span class='kw'>%&gt;%</span> <span class='fu'>gather</span>(<span class='st'>"stock"</span>, <span class='st'>"price"</span>, -<span class='no'>time</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 3
-#&gt;    time       stock   price
-#&gt;    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
-#&gt;  1 2009-01-01 X     -1.63  
-#&gt;  2 2009-01-02 X      0.512 
-#&gt;  3 2009-01-03 X     -1.86  
-#&gt;  4 2009-01-04 X     -0.522 
-#&gt;  5 2009-01-05 X     -0.0526
-#&gt;  6 2009-01-06 X      0.543 
-#&gt;  7 2009-01-07 X     -0.914 
-#&gt;  8 2009-01-08 X      0.468 
-#&gt;  9 2009-01-09 X      0.363 
-#&gt; 10 2009-01-10 X     -1.30  
-#&gt; # … with 20 more rows</div><div class='input'>
+<span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='kw'>stocks</span>, <span class='st'>"stock"</span>, <span class='st'>"price"</span>, <span class='op'>-</span><span class='kw'>time</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 30 x 3</span><span>
+#&gt;    time       stock  price
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2009-01-01 X     -</span><span style='color: #BB0000;'>1.82</span><span> 
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2009-01-02 X     -</span><span style='color: #BB0000;'>0.247</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2009-01-03 X     -</span><span style='color: #BB0000;'>0.244</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2009-01-04 X     -</span><span style='color: #BB0000;'>0.283</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2009-01-05 X     -</span><span style='color: #BB0000;'>0.554</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2009-01-06 X      0.629
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2009-01-07 X      2.07 
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2009-01-08 X     -</span><span style='color: #BB0000;'>1.63</span><span> 
+#&gt; </span><span style='color: #555555;'> 9</span><span> 2009-01-09 X      0.512
+#&gt; </span><span style='color: #555555;'>10</span><span> 2009-01-10 X     -</span><span style='color: #BB0000;'>1.86</span><span> 
+#&gt; </span><span style='color: #555555;'># … with 20 more rows</span><span></div><div class='input'><span class='kw'>stocks</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='st'>"stock"</span>, <span class='st'>"price"</span>, <span class='op'>-</span><span class='kw'>time</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 30 x 3</span><span>
+#&gt;    time       stock  price
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2009-01-01 X     -</span><span style='color: #BB0000;'>1.82</span><span> 
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2009-01-02 X     -</span><span style='color: #BB0000;'>0.247</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2009-01-03 X     -</span><span style='color: #BB0000;'>0.244</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2009-01-04 X     -</span><span style='color: #BB0000;'>0.283</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2009-01-05 X     -</span><span style='color: #BB0000;'>0.554</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2009-01-06 X      0.629
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2009-01-07 X      2.07 
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2009-01-08 X     -</span><span style='color: #BB0000;'>1.63</span><span> 
+#&gt; </span><span style='color: #555555;'> 9</span><span> 2009-01-09 X      0.512
+#&gt; </span><span style='color: #555555;'>10</span><span> 2009-01-10 X     -</span><span style='color: #BB0000;'>1.86</span><span> 
+#&gt; </span><span style='color: #555555;'># … with 20 more rows</span><span></div><div class='input'>
 <span class='co'># get first observation for each Species in iris data -- base R</span>
-<span class='no'>mini_iris</span> <span class='kw'>&lt;-</span> <span class='no'>iris</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>51</span>, <span class='fl'>101</span>), ]
+<span class='kw'>mini_iris</span> <span class='op'>&lt;-</span> <span class='kw'>iris</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>51</span>, <span class='fl'>101</span>), ]
 <span class='co'># gather Sepal.Length, Sepal.Width, Petal.Length, Petal.Width</span>
-<span class='fu'>gather</span>(<span class='no'>mini_iris</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"flower_att"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"measurement"</span>,
-       <span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='no'>Petal.Length</span>, <span class='no'>Petal.Width</span>)</div><div class='output co'>#&gt;       Species   flower_att measurement
+<span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='kw'>mini_iris</span>, key = <span class='st'>"flower_att"</span>, value = <span class='st'>"measurement"</span>,
+       <span class='kw'>Sepal.Length</span>, <span class='kw'>Sepal.Width</span>, <span class='kw'>Petal.Length</span>, <span class='kw'>Petal.Width</span>)</div><div class='output co'>#&gt;       Species   flower_att measurement
 #&gt; 1      setosa Sepal.Length         5.1
 #&gt; 2  versicolor Sepal.Length         7.0
 #&gt; 3   virginica Sepal.Length         6.3
@@ -340,7 +346,7 @@ can contain either a column name as string or a column position).</p>
 #&gt; 10     setosa  Petal.Width         0.2
 #&gt; 11 versicolor  Petal.Width         1.4
 #&gt; 12  virginica  Petal.Width         2.5</div><div class='input'><span class='co'># same result but less verbose</span>
-<span class='fu'>gather</span>(<span class='no'>mini_iris</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"flower_att"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"measurement"</span>, -<span class='no'>Species</span>)</div><div class='output co'>#&gt;       Species   flower_att measurement
+<span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(<span class='kw'>mini_iris</span>, key = <span class='st'>"flower_att"</span>, value = <span class='st'>"measurement"</span>, <span class='op'>-</span><span class='kw'>Species</span>)</div><div class='output co'>#&gt;       Species   flower_att measurement
 #&gt; 1      setosa Sepal.Length         5.1
 #&gt; 2  versicolor Sepal.Length         7.0
 #&gt; 3   virginica Sepal.Length         6.3
@@ -354,36 +360,32 @@ can contain either a column name as string or a column position).</p>
 #&gt; 11 versicolor  Petal.Width         1.4
 #&gt; 12  virginica  Petal.Width         2.5</div><div class='input'>
 <span class='co'># repeat iris example using dplyr and the pipe operator</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>mini_iris</span> <span class='kw'>&lt;-</span>
-  <span class='no'>iris</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>Species</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
+<span class='kw'>mini_iris</span> <span class='op'>&lt;-</span>
+  <span class='kw'>iris</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='kw'>Species</span>) <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice</a></span>(<span class='fl'>1</span>)
-<span class='no'>mini_iris</span> <span class='kw'>%&gt;%</span> <span class='fu'>gather</span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"flower_att"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"measurement"</span>, -<span class='no'>Species</span>)</div><div class='output co'>#&gt; # A tibble: 12 x 3
-#&gt; # Groups:   Species [3]
+<span class='kw'>mini_iris</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/gather.html'>gather</a></span>(key = <span class='st'>"flower_att"</span>, value = <span class='st'>"measurement"</span>, <span class='op'>-</span><span class='kw'>Species</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 12 x 3</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   Species [3]</span><span>
 #&gt;    Species    flower_att   measurement
-#&gt;    &lt;fct&gt;      &lt;chr&gt;              &lt;dbl&gt;
-#&gt;  1 setosa     Sepal.Length         5.1
-#&gt;  2 versicolor Sepal.Length         7  
-#&gt;  3 virginica  Sepal.Length         6.3
-#&gt;  4 setosa     Sepal.Width          3.5
-#&gt;  5 versicolor Sepal.Width          3.2
-#&gt;  6 virginica  Sepal.Width          3.3
-#&gt;  7 setosa     Petal.Length         1.4
-#&gt;  8 versicolor Petal.Length         4.7
-#&gt;  9 virginica  Petal.Length         6  
-#&gt; 10 setosa     Petal.Width          0.2
-#&gt; 11 versicolor Petal.Width          1.4
-#&gt; 12 virginica  Petal.Width          2.5</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> setosa     Sepal.Length         5.1
+#&gt; </span><span style='color: #555555;'> 2</span><span> versicolor Sepal.Length         7  
+#&gt; </span><span style='color: #555555;'> 3</span><span> virginica  Sepal.Length         6.3
+#&gt; </span><span style='color: #555555;'> 4</span><span> setosa     Sepal.Width          3.5
+#&gt; </span><span style='color: #555555;'> 5</span><span> versicolor Sepal.Width          3.2
+#&gt; </span><span style='color: #555555;'> 6</span><span> virginica  Sepal.Width          3.3
+#&gt; </span><span style='color: #555555;'> 7</span><span> setosa     Petal.Length         1.4
+#&gt; </span><span style='color: #555555;'> 8</span><span> versicolor Petal.Length         4.7
+#&gt; </span><span style='color: #555555;'> 9</span><span> virginica  Petal.Length         6  
+#&gt; </span><span style='color: #555555;'>10</span><span> setosa     Petal.Width          0.2
+#&gt; </span><span style='color: #555555;'>11</span><span> versicolor Petal.Width          1.4
+#&gt; </span><span style='color: #555555;'>12</span><span> virginica  Petal.Width          2.5</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#rules-for-selection">Rules for selection</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
